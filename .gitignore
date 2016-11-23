@@ -1,0 +1,7 @@
+*.pyc
+
+cover/
+.coverage
+.coverage.*
+
+venv/
