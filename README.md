@@ -18,6 +18,32 @@ Each event generates an MQTT message which is publish on the message bus, exampl
 
 ![Workflow](https://raw.github.com/natm/home-phones/master/docs/workflow.png)
 
+## HTTP Endpoints
+
+```
+/v1/from_internal/
+/v1/from_external/
+```
+
+## Development
+
+```
+git clone git@github.com:natm/home-phones.git
+cd home-phones
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pip install -r requirements-test.txt
+nosetests
+./run.py
+```
+
+## Deployment
+
+```
+ansible-playbook -i deploy/hosts deploy/playbooks/homephones.yml
+```
+
 ## Historical
 
 2002
@@ -47,25 +73,6 @@ Each event generates an MQTT message which is publish on the message bus, exampl
 * Twilio SIP registration announced
 * Wrote this Flask call routing endpoint
 * Turned off Asterisk VM
-
-## Development
-
-```
-git clone git@github.com:natm/home-phones.git
-cd home-phones
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
-pip install -r requirements-test.txt
-nosetests
-./run.py
-```
-
-## Deployment
-
-```
-ansible-playbook -i deploy/hosts deploy/playbooks/homephones.yml
-```
 
 ## License
 

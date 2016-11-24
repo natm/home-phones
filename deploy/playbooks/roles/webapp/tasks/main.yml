@@ -16,6 +16,8 @@
   copy:
     src=../../homephones
     dest=/var/www/phones
+  notify:
+    - restart apache
 
 # install pip dependencies
 
