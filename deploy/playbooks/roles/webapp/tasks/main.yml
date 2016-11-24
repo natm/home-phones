@@ -1,0 +1,9 @@
+# copy apache vhost
+
+# copy wsgi file
+
+# copy web app to /var/www
+
+# install pip dependencies
+
+# restart apache

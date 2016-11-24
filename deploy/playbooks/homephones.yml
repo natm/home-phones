@@ -1,0 +1,8 @@
+---
+
+- name: Home phones app deployment
+  hosts: all
+  sudo: True
+
+  roles:
+    - { role: webapp,              tags: ["webapp"] }

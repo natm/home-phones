@@ -51,14 +51,20 @@ Each event generates an MQTT message which is publish on the message bus, exampl
 ## Development
 
 ```
-clone
-cd
-venv
-source
-pip
-pip
-tests
+git clone git@github.com:natm/home-phones.git
+cd home-phones
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pip install -r requirements-test.txt
+nosetests
 ./run.py
+```
+
+## Deployment
+
+```
+ansible-playbook -i deploy/hosts deploy/playbooks/homephones.yml
 ```
 
 ## License
