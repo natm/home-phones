@@ -2,8 +2,10 @@
 """Home phones API service."""
 
 import logging
+import twilio.twiml
 
 from flask import Flask, redirect
+
 
 LOG = logging.getLogger(__name__)
 
@@ -17,3 +19,8 @@ class ApiService(object):
 
     def run(self):
         self.app.run(debug=True)
+
+    @staticmethod
+    @app.route("/")
+    def index():
+        return "Hello", 200
