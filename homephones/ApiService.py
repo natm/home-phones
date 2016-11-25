@@ -43,16 +43,26 @@ class ApiService(object):
         #response.dial(callerId=caller).sip("officephone1@esgob.sip.us1.twilio.com").sip("cordlessphone1@esgob.sip.us1.twilio.com")
         #return twiml(response)
 
-        resp = Response("""<?xml version="1.0" encoding="UTF-8"?>
+        x = """<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="en-GB" voice="alice">Please hold</Say>
-    <Dial callerId="TEST">
+    <Dial callerId="TEST" action="https://phones.gorras.hw.esgob.com/v1/call_action/">
         <Sip>officephone1@esgob.sip.us1.twilio.com</Sip>
-        <Sip>cordlessphone1@esgob.sip.us1.twilio.com</Sip>
     </Dial>
-</Response>""")
-        resp.headers['Content-Type'] = 'text/xml'
-        return resp
+    <Dial callerId="TEST" action="https://phones.gorras.hw.esgob.com/v1/call_action/">
+        <Sip>natimac1@esgob.sip.us1.twilio.com</Sip>
+    </Dial>
+</Response>"""
+        #resp = Response(x)
+        #resp.headers['Content-Type'] = 'text/xml'
+        #return resp
+        response = twilio.twiml.Response()
+        response.say("please hold")
+        response.enqueue(name="inbound")
+        return twiml(response)
+        #response.say("please hold.", voice="alice", language="en-GB")
+        #response.enqueue(callerId=caller).sip("officephone1@esgob.sip.us1.twilio.com").sip("cordlessphone1@esgob.sip.us1.twilio.com")
+        #return twiml(response)
 
     @staticmethod
     @app.route("/v1/from_internal/", methods=['POST'])
@@ -64,3 +74,17 @@ class ApiService(object):
         response.say("Calling %s" % (describednumber), voice="alice", language="en-GB")
         response.dial(number=fullnumber, callerId="+441437766027")
         return twiml(response)
+
+    @staticmethod
+    @app.route("/v1/call_action/", methods=['POST'])
+    def call_action():
+        resp = Response("""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+</Response>""")
+        resp.headers['Content-Type'] = 'text/xml'
+        return resp
+
+    @staticmethod
+    @app.route("/v1/status_callback/", methods=['POST'])
+    def status_callback():
+        return ""
