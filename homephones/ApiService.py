@@ -38,10 +38,21 @@ class ApiService(object):
     @app.route("/v1/from_external/", methods=['POST'])
     def from_external():
         caller = str(request.form["Caller"]).replace("client:", "")
-        response = twilio.twiml.Response()
-        response.say("Thank you for calling Claire and Nat, please hold.", voice="alice", language="en-GB")
-        response.dial(callerId=caller).sip("officephone1@esgob.sip.us1.twilio.com")
-        return twiml(response)
+        #response = twilio.twiml.Response()
+        #response.say("Thank you for calling Claire and Nat, please hold.", voice="alice", language="en-GB")
+        #response.dial(callerId=caller).sip("officephone1@esgob.sip.us1.twilio.com").sip("cordlessphone1@esgob.sip.us1.twilio.com")
+        #return twiml(response)
+
+        resp = Response("""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="alice">Please hold</Say>
+    <Dial callerId="TEST">
+        <Sip>officephone1@esgob.sip.us1.twilio.com</Sip>
+        <Sip>cordlessphone1@esgob.sip.us1.twilio.com</Sip>
+    </Dial>
+</Response>""")
+        resp.headers['Content-Type'] = 'text/xml'
+        return resp
 
     @staticmethod
     @app.route("/v1/from_internal/", methods=['POST'])
