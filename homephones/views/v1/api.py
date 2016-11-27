@@ -5,7 +5,7 @@ import logging
 import twilio.twiml
 
 from flask import Blueprint, Response, request
-from homephones.config import lookup_number
+from homephones.config import lookup_number, is_rejected_number
 from homephones.dialhelper import evalute_number
 
 LOG = logging.getLogger(__name__)
@@ -37,6 +37,13 @@ def index():
 def from_external():
     caller = str(request.form["Caller"]).replace("client:", "")
     response = twilio.twiml.Response()
+
+    # should we reject it? spam?
+    reject = is_rejected_number(number=caller)
+    if reject is not None:
+        response.reject()
+        return twiml(response)
+
     response.say("Thank you for calling Claire and Nat, please hold.", voice="alice", language="en-GB")
     # lookup caller id
     callerid = lookup_number(number=caller)
