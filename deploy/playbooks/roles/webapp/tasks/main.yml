@@ -1,8 +1,23 @@
 # copy apache vhost
 
 # copy wsgi file
+- name: Copy WSGI file
+  copy:
+    src=../../homephones.wsgi
+    dest=/var/www/phones/homephones.wsgi
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - restart apache
 
 # copy web app to /var/www
+- name: Copy web app to the server
+  copy:
+    src=../../homephones
+    dest=/var/www/phones
+  notify:
+    - restart apache
 
 # install pip dependencies
 
