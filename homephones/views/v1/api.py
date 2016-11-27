@@ -16,7 +16,9 @@ api = Blueprint('apiv1', __name__, url_prefix='/v1')
 
 def parse_dialed_number(number):
     fullnumber = evalute_number(dialed=number)
-    describednumber = ""
+    describednumber = lookup_number(number=fullnumber)
+    if describednumber is None:
+        describednumber = fullnumber
     return (fullnumber, describednumber)
 
 
