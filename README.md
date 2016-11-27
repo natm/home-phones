@@ -1,5 +1,7 @@
 # Home phones
 
+[![Build Status](https://travis-ci.org/natm/home-phones.svg?branch=master)](https://travis-ci.org/natm/home-phones)
+
 Call routing using [Twilio](http://www.twilio.com). We have a handful of incoming UK numbers, mostly ported into Twilio from elsewhere (as they work out cheaper than many UK VOIP providers). Multiple SIP handsets in the house are registered to a SIP domain hosted in our Twilio account.
 
 This Flask application handles all our call routing:
