@@ -10,7 +10,7 @@ from homephones.dialhelper import evalute_number
 LOG = logging.getLogger(__name__)
 
 
-api = Blueprint('apiv1', __name__, url_prefix='/v1')
+api = Blueprint('apiv2', __name__, url_prefix='/v2')
 
 def parse_dialed_number(number):
     fullnumber = evalute_number(dialed=number)
@@ -24,7 +24,7 @@ def twiml(resp):
 
 @api.route("/")
 def index():
-    return "Home phones v1", 200
+    return "Home phones v2", 200
 
 @api.route("/from_external/", methods=['POST'])
 def from_external():
