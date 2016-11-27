@@ -5,7 +5,7 @@ import logging
 import twilio.twiml
 
 from flask import Blueprint, Flask, redirect, url_for, Response, request
-
+from homephones.dialhelper import evalute_number
 
 LOG = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ LOG = logging.getLogger(__name__)
 apiv1 = Blueprint('api', __name__, url_prefix='/v1')
 
 def parse_dialed_number(number):
-    fullnumber = "+447531750292"
+    fullnumber = evalute_number(dialed=number)
     describednumber = "Test"
     return (fullnumber, describednumber)
 
