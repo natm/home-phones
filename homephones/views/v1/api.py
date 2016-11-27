@@ -5,6 +5,7 @@ import logging
 import twilio.twiml
 
 from flask import Blueprint, Response, request
+from homephones.config import lookup_number
 from homephones.dialhelper import evalute_number
 
 LOG = logging.getLogger(__name__)
@@ -35,7 +36,11 @@ def from_external():
     caller = str(request.form["Caller"]).replace("client:", "")
     response = twilio.twiml.Response()
     response.say("Thank you for calling Claire and Nat, please hold.", voice="alice", language="en-GB")
-    response.dial(callerId=caller).sip("cordlessphone1@esgob.sip.us1.twilio.com")
+    # lookup caller id
+    callerid = lookup_number(number=caller)
+    if callerid is None:
+        callerid = caller
+    response.dial(callerId=callerid).sip("cordlessphone1@esgob.sip.us1.twilio.com")
     return twiml(response)
 
 

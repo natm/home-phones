@@ -9,6 +9,7 @@ from homephones.views.v2.api import api as apiv2
 
 LOG = logging.getLogger(__name__)
 
+
 class ApiService(object):
 
     app = Flask(__name__)

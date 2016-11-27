@@ -1,0 +1,9 @@
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  topic_prefix: phones
+  username: phones
+  password: abc123
+lookup:
+  447531000000: Nat
+  441348200000: A house

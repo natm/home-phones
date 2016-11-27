@@ -9,8 +9,9 @@ def evalute_number(dialed):
         # UK Number
         return "+44%s" % (dialed[1:])
     elif len(dialed) == 6:
+        # Local Fishguard numbers
         return "+441348%s" % (dialed)
-    return ""
+    return None
 
 
 class DialHelperEvaluationError(Exception):
