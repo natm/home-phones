@@ -23,6 +23,7 @@ Each event generates an MQTT message which is publish on the message bus, some e
 ```
 /v1/from_internal/
 /v1/from_external/
+/v1/status_callback/
 ```
 
 ## Development
