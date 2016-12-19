@@ -90,7 +90,7 @@ def from_external():
     callerid = lookup_number(number=caller)
     if callerid is None:
         callerid = caller
-    response.dial(callerId=callerid, action=url_for('apiv1.from_external_dial_action', _external=True), method="POST").sip("cordlessphone1@esgob.sip.us1.twilio.com")
+    response.dial(callerId=str(callerid).replace(" ", ""), action=url_for('apiv1.from_external_dial_action', _external=True), method="POST").sip("cordlessphone1@esgob.sip.us1.twilio.com")
     mqtt_log_call(direction="incoming", category="ringing", from_number=caller, to_number=called)
     return twiml(response)
 
