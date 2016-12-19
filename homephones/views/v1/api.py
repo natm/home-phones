@@ -84,7 +84,7 @@ def from_external():
         response.reject()
         return twiml(response)
 
-    response.say("Thank you for calling Claire and Nat, please hold.", voice="alice", language="en-GB")
+    response.say("Thank you for calling, please hold.", voice="alice", language="en-GB")
 
     # lookup caller id
     callerid = lookup_number(number=caller)
@@ -108,7 +108,7 @@ def from_internal():
     (fullnumber, describednumber) = parse_dialed_number(number=number)
     mqtt_log_call(direction="outgoing", category="dialing", from_number="+441437766027", to_number=fullnumber)
     response = twilio.twiml.Response()
-    response.say("Calling %s" % (describednumber), voice="alice", language="en-GB")
+    # response.say("Calling %s" % (describednumber), voice="alice", language="en-GB")
     response.dial(number=fullnumber, callerId="+441437766027", action=url_for('apiv1.from_internal_dial_action', _external=True))
     return twiml(response)
 
