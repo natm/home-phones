@@ -84,7 +84,7 @@ def from_external():
         response.reject()
         return twiml(response)
 
-    response.say("Thank you for calling, please hold.", voice="alice", language="en-GB")
+    #    response.say("Thank you for calling, please hold.", voice="alice", language="en-GB")
 
     # lookup caller id
     callerid = lookup_number(number=caller)
